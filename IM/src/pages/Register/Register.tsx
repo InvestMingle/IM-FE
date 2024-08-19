@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import "./Register.css";
 
 function Register() {
   const navigate = useNavigate();
@@ -78,51 +79,66 @@ function Register() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="register" onSubmit={handleSubmit}>
       <h1 className="title">회원가입</h1>
-      <div>
-        <span>이메일</span>
-        <input
-          type="email"
-          value={form.email}
-          onChange={(e) => setForm({ ...form, email: e.target.value })}
-        />
-        <button type="button">중복확인</button>
-      </div>
-      <div>
-        <span>이름</span>
-        <input
-          type="text"
-          value={form.username}
-          onChange={(e) => setForm({ ...form, username: e.target.value })}
-        />
-      </div>
-      <div>
-        <span>비밀번호</span>
-        <input
-          type="password"
-          value={form.password}
-          onChange={handlePassword}
-        />
-        {form.pwError && <p style={{ color: "#BD0101" }}>{form.pwError}</p>}
-      </div>
-      <div>
-        <span>비밀번호 확인</span>
-        <input
-          type="password"
-          value={form.chkPassword}
-          onChange={handlePasswordCheck}
-        />
-        {form.cpwError && <p style={{ color: "#BD0101" }}>{form.cpwError}</p>}
-      </div>
-      <div>
-        <span>닉네임</span>
-        <input
-          type="text"
-          value={form.nickname}
-          onChange={(e) => setForm({ ...form, nickname: e.target.value })}
-        />
-        <button type="button">중복확인</button>
+      <div className="containerR">
+        <div className="divR">
+          <span className="textR">이메일</span>
+          <div className="chk">
+            <input
+              className="inputR"
+              type="email"
+              value={form.email}
+              onChange={(e) => setForm({ ...form, email: e.target.value })}
+            />
+            <button className="dbchk" type="button">
+              중복확인
+            </button>
+          </div>
+        </div>
+        <div className="divR">
+          <span className="textR">이름</span>
+          <input
+            className="inputR"
+            type="text"
+            value={form.username}
+            onChange={(e) => setForm({ ...form, username: e.target.value })}
+          />
+        </div>
+        <div className="divR">
+          <span className="textR">비밀번호</span>
+          <input
+            className="inputR"
+            type="password"
+            value={form.password}
+            onChange={handlePassword}
+          />
+          {form.pwError && <p style={{ color: "#BD0101" }}>{form.pwError}</p>}
+        </div>
+        <div className="divR">
+          <span className="textR">비밀번호 확인</span>
+          <input
+            className="inputR"
+            type="password"
+            value={form.chkPassword}
+            onChange={handlePasswordCheck}
+          />
+          {form.cpwError && <p style={{ color: "#BD0101" }}>{form.cpwError}</p>}
+        </div>
+        <div className="divR">
+          <span className="textR">닉네임</span>
+          <div className="chk">
+            <input
+              className="inputR"
+              type="text"
+              value={form.nickname}
+              onChange={(e) => setForm({ ...form, nickname: e.target.value })}
+            />
+            <button className="dbchk" type="button">
+              중복확인
+            </button>
+          </div>
+        </div>
       </div>
       <button className="signupBtn" type="submit">
         I'M 시작하기

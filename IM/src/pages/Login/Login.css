@@ -1,0 +1,27 @@
+.id,
+.password {
+  display: flex;
+  flex-direction: column;
+  width: 323px;
+}
+
+.id {
+  margin-bottom: 45px;
+}
+
+.password {
+  margin-bottom: 86px;
+}
+
+.email,
+.pw {
+  font-size: 24px;
+}
+.inEmail,
+.inPw {
+  height: 39px;
+  border: none;
+  border-bottom: 2px solid #000;
+  margin-top: 12px;
+  font-size: 24px;
+}

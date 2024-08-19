@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import "./Login.css";
 
 function Login() {
   const navigate = useNavigate();
@@ -48,7 +49,7 @@ function Login() {
   return (
     <form className="home" onSubmit={handleSubmit}>
       <h1 className="title">로그인</h1>
-      <div className="username">
+      <div className="id">
         <span className="email">이메일</span>
         <input
           className="inEmail"
