@@ -1,0 +1,18 @@
+.users {
+    width: fit-content;
+    max-width: 50%;
+    border: 1px solid black;
+    border-radius: 10%;
+    padding: 4px 10px;
+    margin : 2px 8px 18px 8px;
+}
+
+.profile {
+    margin-left: 10px;
+}
+
+.chatContainer{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}

@@ -1,0 +1,15 @@
+.chat_header{
+    border: 1px solid black;
+    border-radius: 10%;
+    margin: 10px;
+    padding: 10px;
+}
+
+.header_title{
+    display: inline-block;
+}
+
+.arrow{
+    margin-right: 20px;
+    text-decoration: none;
+}

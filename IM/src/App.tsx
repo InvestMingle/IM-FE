@@ -1,12 +1,14 @@
-import React from "react";
-import { Routes, Route } from "react-router-dom";
-import Home from "./pages/Home/Home";
+import { RouterProvider } from "react-router-dom";
+import Layout from "./routes/Layout";
+import { router } from "./routes/router";
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-    </Routes>
+    <>
+      <Layout>
+        <RouterProvider router = {router}/>
+      </Layout>
+    </>
   );
 }
 
