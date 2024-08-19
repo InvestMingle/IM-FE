@@ -1,0 +1,23 @@
+form {
+    display: flex;
+    border: 1px solid brown;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    border: 1px solid magenta;
+    justify-content: right;
+    padding: 2px;
+}
+
+.file {
+    border: 1px solid blue;
+    padding: 10px;
+    margin-right: 10px;
+}
+
+.input{
+    width: 75%;
+    height: 35px;
+}
