@@ -38,7 +38,7 @@ function Login() {
         console.log("로그인 성공:", response.data);
 
         // 4. 홈화면 이동
-        // navigate("/home");
+        navigate("/home");
       }
     } catch (error) {
       console.error("로그인 오류:", error);
@@ -47,7 +47,7 @@ function Login() {
   };
 
   return (
-    <form className="home" onSubmit={handleSubmit}>
+    <form className="main" onSubmit={handleSubmit}>
       <h1 className="title">로그인</h1>
       <div className="id">
         <span className="email">이메일</span>

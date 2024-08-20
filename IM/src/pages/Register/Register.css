@@ -1,21 +1,46 @@
-.register {
+.titleR {
+  align-content: flex-start;
+  font-weight: 800;
+  font-size: 64px;
+  -webkit-text-stroke: 2px #000000;
+  color: transparent;
+  /* margin-bottom: 100px; */
+}
+
+.divR {
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  justify-content: start;
-  align-items: center;
+  width: 341px;
 }
 
 .textR {
   font-size: 24px;
 }
 
-.divR {
-  display: flex;
-  flex-direction: column;
-  width: 323px;
+.inputR,
+.inputRS {
+  height: 39px;
+  border: none;
+  border-bottom: 2px solid #000;
+  margin-top: 12px;
+  font-size: 24px;
+  margin-bottom: 36px;
+}
+
+.inputRS {
+  width: 231px;
+  margin-right: 15px;
 }
 
 .chk {
-  width: 323px;
+  width: 341px;
+}
+
+.chkbtn {
+  font-size: 18px;
+  width: 90px;
+  height: 49px;
+  background-color: #fcd674;
+  border: 2px solid #000;
+  border-radius: 9999px;
 }

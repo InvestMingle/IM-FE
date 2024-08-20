@@ -46,7 +46,7 @@ function Register() {
           console.log("회원가입 성공:", response.data);
 
           // 4. 홈화면 이동
-          // navigate("/home");
+          navigate("/home");
         }
       }
     } catch (error) {
@@ -79,65 +79,63 @@ function Register() {
   };
 
   return (
-    <form className="register" onSubmit={handleSubmit}>
-      <h1 className="title">회원가입</h1>
-      <div className="containerR">
-        <div className="divR">
-          <span className="textR">이메일</span>
-          <div className="chk">
-            <input
-              className="inputR"
-              type="email"
-              value={form.email}
-              onChange={(e) => setForm({ ...form, email: e.target.value })}
-            />
-            <button className="dbchk" type="button">
-              중복확인
-            </button>
-          </div>
-        </div>
-        <div className="divR">
-          <span className="textR">이름</span>
+    <form className="main" onSubmit={handleSubmit}>
+      <h1 className="titleR">회원가입</h1>
+      <div className="divR">
+        <span className="textR">이메일</span>
+        <div className="chk">
           <input
-            className="inputR"
+            className="inputRS"
+            type="email"
+            value={form.email}
+            onChange={(e) => setForm({ ...form, email: e.target.value })}
+          />
+          <button className="chkbtn" type="button">
+            중복확인
+          </button>
+        </div>
+      </div>
+      <div className="divR">
+        <span className="textR">이름</span>
+        <input
+          className="inputR"
+          type="text"
+          value={form.username}
+          onChange={(e) => setForm({ ...form, username: e.target.value })}
+        />
+      </div>
+      <div className="divR">
+        <span className="textR">비밀번호</span>
+        <input
+          className="inputR"
+          type="password"
+          value={form.password}
+          onChange={handlePassword}
+        />
+        {form.pwError && <p style={{ color: "#BD0101" }}>{form.pwError}</p>}
+      </div>
+      <div className="divR">
+        <span className="textR">비밀번호 확인</span>
+        <input
+          className="inputR"
+          type="password"
+          value={form.chkPassword}
+          onChange={handlePasswordCheck}
+        />
+        {form.cpwError && <p style={{ color: "#BD0101" }}>{form.cpwError}</p>}
+      </div>
+      <div className="divR">
+        <span className="textR">닉네임</span>
+        <div className="chk">
+          <input
+            className="inputRS"
             type="text"
-            value={form.username}
-            onChange={(e) => setForm({ ...form, username: e.target.value })}
+            value={form.nickname}
+            onChange={(e) => setForm({ ...form, nickname: e.target.value })}
           />
-        </div>
-        <div className="divR">
-          <span className="textR">비밀번호</span>
-          <input
-            className="inputR"
-            type="password"
-            value={form.password}
-            onChange={handlePassword}
-          />
-          {form.pwError && <p style={{ color: "#BD0101" }}>{form.pwError}</p>}
-        </div>
-        <div className="divR">
-          <span className="textR">비밀번호 확인</span>
-          <input
-            className="inputR"
-            type="password"
-            value={form.chkPassword}
-            onChange={handlePasswordCheck}
-          />
-          {form.cpwError && <p style={{ color: "#BD0101" }}>{form.cpwError}</p>}
-        </div>
-        <div className="divR">
-          <span className="textR">닉네임</span>
-          <div className="chk">
-            <input
-              className="inputR"
-              type="text"
-              value={form.nickname}
-              onChange={(e) => setForm({ ...form, nickname: e.target.value })}
-            />
-            <button className="dbchk" type="button">
-              중복확인
-            </button>
-          </div>
+          <button className="chkbtn" type="button">
+            중복확인
+          </button>
         </div>
       </div>
       <button className="signupBtn" type="submit">
