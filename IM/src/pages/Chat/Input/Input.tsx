@@ -2,13 +2,12 @@ import React, { ChangeEvent } from 'react'
 import './input.css'
 
 interface ChatInputProps {
-    setMessage : (e:string) => void ,
     sendMessage : (e: React.MouseEvent<HTMLButtonElement>) => void,
-    onChange : (e :ChangeEvent<HTMLInputElement>) => void,
+    handleInput : (e :ChangeEvent<HTMLInputElement>) => void,
     message : string
 }
 
-const Input = ({ setMessage,sendMessage, message } : ChatInputProps) => {
+const Input = ({ sendMessage, message, handleInput } : ChatInputProps) => {
 
   return(
       <form className="form">
@@ -18,8 +17,7 @@ const Input = ({ setMessage,sendMessage, message } : ChatInputProps) => {
           type="text"
           placeholder="Write a Message"
           value={message}
-          onChange={({ target: { value } }) => setMessage(value)}
-          //enter처리 필요
+          onChange={handleInput}
         />
       <button onClick={sendMessage}>Send</button>
       </form>

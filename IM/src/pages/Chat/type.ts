@@ -1,11 +1,8 @@
-export interface ChatProps {
-    nickname : string,
-    room : string
-  }
-
-  export interface MessageContent {
-    writer: string;
-    text: string;
+export interface MessageContent {
+  type : string,
+  sender : string,
+  data : string,
+  channelId: number
 }
 
 export interface MessagesProps {
@@ -15,6 +12,6 @@ export interface MessagesProps {
 
 export interface MessageProps {
   writer: string;
-  text: string;
+  contents: string;
   user: string;
 }

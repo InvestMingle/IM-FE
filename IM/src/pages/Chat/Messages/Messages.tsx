@@ -9,7 +9,7 @@ const Messages= ({messages, user}:MessagesProps) => {
       <div className='messageContainer'>
           {messages.map((msg, i) => (
               <div key={i}>
-                  <Message writer={msg.writer} text={msg.text} user={user} />
+                  <Message writer={msg.writer} contents={msg.text} user={user} />
               </div>
           ))}
       </div>

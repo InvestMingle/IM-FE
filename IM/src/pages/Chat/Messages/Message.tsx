@@ -1,10 +1,10 @@
 import "./Message.css";
 import { MessageProps } from "../type";
 
-const Message = ({ writer, text, user }: MessageProps) => {
+const Message = ({ writer, contents, user }: MessageProps) => {
   let current_user = "others";
   const trimmedName = user.trim().toLowerCase();
-  console.log(user, writer, text);
+  console.log(user, writer, contents);
   if (writer == trimmedName) {
     current_user = "me";
   } else if (writer == 'ai_name') {
@@ -17,7 +17,7 @@ const Message = ({ writer, text, user }: MessageProps) => {
     <>
       <div className={current_user}>
         <span className="profile">{writer}</span>
-        <p className="textbox">{text}</p>
+        <p className="textbox">{contents}</p>
       </div>
     </>
   );
