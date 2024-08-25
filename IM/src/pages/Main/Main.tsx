@@ -6,7 +6,6 @@ function Main() {
   return (
     <>
       <div className="main">
-        <h1 className="title">I'M</h1>
         <div className="btn">
           <Link to="/login">
             <button className="loginBtn">로그인</button>

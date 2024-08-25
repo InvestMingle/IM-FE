@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Register.css";
 
 function Register() {
+
   const navigate = useNavigate();
   const api = "https://stock.bulbtalk.com";
 
@@ -53,7 +54,7 @@ function Register() {
       console.error("회원가입 오류:", error);
       alert("회원가입 중 문제가 발생했습니다. 다시 시도해 주세요.");
     }
-  };
+  }
 
   // 비밀번호 조건 확인
   const handlePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -80,7 +81,6 @@ function Register() {
 
   return (
     <form className="main" onSubmit={handleSubmit}>
-      <h1 className="titleR">회원가입</h1>
       <div className="divR">
         <span className="textR">이메일</span>
         <div className="chk">

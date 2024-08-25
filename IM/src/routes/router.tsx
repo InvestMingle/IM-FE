@@ -1,19 +1,15 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../pages/Main/Main";
-import Chat from "../pages/Chat/Chat";
-import ChatList from "../pages/ChatList/ChatList";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import Home from "../pages/Home/Home";
+import ErrorPage from "../components/common/ErrorPage/ErrorPage";
+import Chat from "../pages/Chat/Chat";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <Main />,
-  },
-  {
-    path: "/chat",
-    element: <ChatList />,
   },
   {
     path: "/login",
@@ -27,4 +23,9 @@ export const router = createBrowserRouter([
     path: "/home",
     element: <Home />,
   },
+  {
+    path: "/chat",
+    element: <Chat />,
+    errorElement: <ErrorPage />
+  }
 ]);
