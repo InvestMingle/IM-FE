@@ -1,16 +1,25 @@
 import React, { useState } from 'react';
-import './Chart.css'; // Import the CSS file
+import './Chart.css'; // Import the CSS file for styling
 
-// Main component
 const Chart: React.FC = () => {
+    // State to manage modal visibility
     const [isModalOpen, setIsModalOpen] = useState(false);
 
+    // State to manage expand/collapse of content
+    const [isExpanded, setIsExpanded] = useState(false);
+
+    // Function to open modal
     const openModal = () => setIsModalOpen(true);
+
+    // Function to close modal
     const closeModal = () => setIsModalOpen(false);
+
+    // Function to toggle content expand/collapse
+    const toggleExpand = () => setIsExpanded(!isExpanded);
 
     return (
         <div>
-            {/* Trigger button to open the modal */}
+            {/* Button to trigger modal */}
             <button onClick={openModal}>Open Modal</button>
 
             {/* Modal Component */}
@@ -20,9 +29,25 @@ const Chart: React.FC = () => {
                         <button className="close-button" onClick={closeModal}>
                             &times;
                         </button>
-                        <h2>Chart Modal</h2>
-                        <p>This is a modal window displaying a chart.</p>
-                        {/* You can include your chart here */}
+
+                        {/* Modal Title - always visible */}
+                        <div className="modal-title">
+                            <h2>Announcement Title</h2>
+                        </div>
+
+                        {/* Expandable Content */}
+                        <div className={`modal-content ${isExpanded ? 'expanded' : 'collapsed'}`}>
+                            {isExpanded && (
+                                <p>
+                                    This is additional content that is shown when the expand button is clicked. You can add more information here, such as detailed announcements or other content.
+                                </p>
+                            )}
+                        </div>
+
+                        {/* Expand/Collapse Button */}
+                        <button className="expand-button" onClick={toggleExpand}>
+                            {isExpanded ? 'Collapse' : 'Expand'}
+                        </button>
                     </div>
                 </div>
             )}

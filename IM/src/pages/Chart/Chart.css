@@ -9,17 +9,19 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000; /* Ensure it sits on top of other content */
+    z-index: 1000;
 }
 
 /* Modal Container styling */
 .modal-container {
-    width: 500px;
+    width: 400px;
     background-color: white;
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Close Button styling */
@@ -31,4 +33,36 @@
     border: none;
     font-size: 1.5rem;
     cursor: pointer;
+}
+
+/* Modal Title styling */
+.modal-title {
+    margin-bottom: 10px;
+}
+
+/* Expandable content styles */
+.modal-content {
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    max-height: 0; /* Collapsed by default */
+}
+
+/* Expanded content styling */
+.modal-content.expanded {
+    max-height: 500px; /* Adjust as needed to accommodate content */
+}
+
+/* Expand/Collapse button styling */
+.expand-button {
+    margin-top: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.expand-button:hover {
+    background-color: #0056b3;
 }
