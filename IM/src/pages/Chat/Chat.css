@@ -23,12 +23,12 @@
     height: 100vh; 
     position: relative;
     overflow-y: auto;
-    padding-bottom: 120px;
+    padding-bottom: 200px;
 }
 
 .inputContainer{
   position: sticky;
-    bottom: 0;
+  bottom: 0;
   padding: 10px;
   box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1); 
 }

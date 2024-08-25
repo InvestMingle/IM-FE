@@ -1,5 +1,6 @@
 import React, { ChangeEvent } from 'react'
 import './input.css'
+import { AiTwotoneFileAdd } from "react-icons/ai";
 
 interface ChatInputProps {
     sendMessage : (e: React.MouseEvent<HTMLButtonElement>) => void,
@@ -11,7 +12,7 @@ const Input = ({ sendMessage, message, handleInput } : ChatInputProps) => {
 
   return(
       <form className="form">
-        <a href="" className='file'>icon</a>
+        <a href="" className='file'><AiTwotoneFileAdd/></a>
         <input
           className="input"
           type="text"
@@ -19,7 +20,7 @@ const Input = ({ sendMessage, message, handleInput } : ChatInputProps) => {
           value={message}
           onChange={handleInput}
         />
-      <button onClick={sendMessage}>Send</button>
+      <button className='inputBtn' onClick={sendMessage}>Send</button>
       </form>
   )
 

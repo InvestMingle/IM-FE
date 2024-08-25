@@ -1,5 +1,7 @@
 import "./Message.css";
 import { MessageProps } from "../type";
+import { FaRobot } from "react-icons/fa6";
+import {IoMdPerson} from "react-icons/io";
 
 const Message = ({ message, user }: MessageProps) => {
 
@@ -9,16 +11,26 @@ const Message = ({ message, user }: MessageProps) => {
 
   if (sender == trimmedName) {
     current_user = "me";
-  } else if (sender == 'ai_name') {
-    current_user ='ai_name'
+  } else if (sender == 'IMBOT') {
+    current_user ='IMBOT'
   } else {
     current_user = "others"
   }
   return (
     <>
       <div className={current_user}>
+        {(current_user == 'others')
+        ?
+        <span><IoMdPerson/></span>
+        :
+        (current_user == 'IMBOT')
+        ?
+        <span><FaRobot/></span>
+        :
+        null
+        }
         <span className="profile">{sender}</span>
-        <p className="textbox">{data}</p>
+        <div className="textbox">{data}</div>
       </div>
     </>
   );

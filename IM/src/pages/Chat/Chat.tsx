@@ -5,6 +5,7 @@ import { MessageContent } from "./type";
 import Messages from "./Messages/Messages";
 import Input from "./Input/Input";
 import './Chat.css'
+import Header from "./Header/Header";
 
 const Chat = () => {
 
@@ -14,7 +15,7 @@ const Chat = () => {
   const [message, setMessage] = useState<string>("");
   const [messages, setMessages] = useState<MessageContent[]>([
     {sender:'user1', data: "hello", channelId: channelName, type:"TALK"},
-    {sender:'ai_name', data:'오늘의 삼성전자 주가는.....', channelId:channelName, type:"TALK"}
+    {sender:'IMBOT', data:'오늘의 삼성전자 주가는.....', channelId:channelName, type:"TALK"}
   ]);
 
 
@@ -66,14 +67,17 @@ const Chat = () => {
   }, [channelName]);
 
   return (
-    <div className="chat">
-      <div className="chatContainer">
-        <Messages messages={messages} user={nickName} />
-      </div>    
-      <div className="inputContainer">
-        <Input sendMessage={handleSubmit} message={message} handleInput={handleInputValue}  />
+    <>
+      <div className="chat">
+        <Header />
+        <div className="chatContainer">
+          <Messages messages={messages} user={nickName} />
+        </div>    
+        <div className="inputContainer">
+          <Input sendMessage={handleSubmit} message={message} handleInput={handleInputValue}  />
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 
