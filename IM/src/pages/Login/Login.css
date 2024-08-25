@@ -1,3 +1,13 @@
+
+.title {
+  border: 1px solid magenta;
+  font-weight: 800;
+  font-size: 64px;
+  -webkit-text-stroke: 2px #000000;
+  color: transparent;
+}
+
+
 .id,
 .password {
   display: flex;

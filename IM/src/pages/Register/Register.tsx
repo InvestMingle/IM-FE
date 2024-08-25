@@ -80,7 +80,7 @@ function Register() {
 
   return (
     <form className="main" onSubmit={handleSubmit}>
-      <h1 className="titleR">회원가입</h1>
+      {/* <h1 className="titleR">회원가입</h1> */}
       <div className="divR">
         <span className="textR">이메일</span>
         <div className="chk">

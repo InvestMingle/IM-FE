@@ -48,7 +48,7 @@ function Login() {
 
   return (
     <form className="main" onSubmit={handleSubmit}>
-      <h1 className="title">로그인</h1>
+      {/* <h1 className="title">로그인</h1> */}
       <div className="id">
         <span className="email">이메일</span>
         <input
