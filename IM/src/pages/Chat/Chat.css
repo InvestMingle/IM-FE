@@ -1,0 +1,34 @@
+.users {
+    width: fit-content;
+    max-width: 50%;
+    border: 1px solid black;
+    border-radius: 10%;
+    padding: 4px 10px;
+    margin : 2px 8px 18px 8px;
+}
+
+.profile {
+    margin-left: 10px;
+}
+
+.chat{
+    display: flex;
+    flex-direction: column;  
+}
+
+.chatContainer{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column-reverse;
+    height: 100vh; 
+    position: relative;
+    overflow-y: auto;
+    padding-bottom: 120px;
+}
+
+.inputContainer{
+  position: sticky;
+    bottom: 0;
+  padding: 10px;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1); 
+}
