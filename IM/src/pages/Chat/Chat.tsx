@@ -64,6 +64,9 @@ const Chat = () => {
   
   useEffect(() => {
     connectHandler();
+    return () => {
+      client.current?.disconnect();
+    };
   }, [channelName]);
 
   return (
