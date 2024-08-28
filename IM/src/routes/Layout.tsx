@@ -1,5 +1,6 @@
 import  { ReactNode } from 'react';
 import './Layout.css'
+import Header from '../components/common/Header/Header';
 
 interface LayoutProps {
   children: ReactNode;
@@ -7,8 +8,9 @@ interface LayoutProps {
 
 const Layout: React.FunctionComponent<LayoutProps> = ({ children }) => {
   return (
-    <div>
-      <div className="appContainer">{children}</div>
+    <div className="appContainer">
+      <Header />
+      <div>{children}</div>
     </div>
   );
 };
