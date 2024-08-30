@@ -7,7 +7,8 @@ function App() {
   return (
     <>
       <Layout>
-        <RouterProvider router = {router}/>
+        <Header />
+        <RouterProvider router={router} />
       </Layout>
     </>
   );

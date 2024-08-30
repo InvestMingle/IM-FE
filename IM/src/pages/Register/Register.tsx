@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./Register.css";
+
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 function Register() {
-
   const navigate = useNavigate();
   const api = "https://stock.bulbtalk.com";
 
@@ -54,7 +55,7 @@ function Register() {
       console.error("회원가입 오류:", error);
       alert("회원가입 중 문제가 발생했습니다. 다시 시도해 주세요.");
     }
-  }
+  };
 
   // 비밀번호 조건 확인
   const handlePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -80,67 +81,74 @@ function Register() {
   };
 
   return (
-    <form className="main" onSubmit={handleSubmit}>
-      <div className="divR">
-        <span className="textR">이메일</span>
-        <div className="chk">
-          <input
-            className="inputRS"
-            type="email"
-            value={form.email}
-            onChange={(e) => setForm({ ...form, email: e.target.value })}
-          />
-          <button className="chkbtn" type="button">
-            중복확인
-          </button>
-        </div>
+    <form
+      className="flex flex-col w-4/5 space-y-6 ml-14"
+      onSubmit={handleSubmit}
+    >
+      <div className="flex flex-col items-center space-y-3 mb-20">
+        <h2 className="text-4xl font-bold mt-6">Join I'M</h2>
+        <p className="text-base text-muted-foreground">
+          You can easily sign up
+        </p>
       </div>
-      <div className="divR">
-        <span className="textR">이름</span>
-        <input
-          className="inputR"
+      <div className="flex">
+        <Input
+          placeholder="Email"
+          className="h-14 rounded-xl text-lg mr-2"
+          type="email"
+          value={form.email}
+          onChange={(e) => setForm({ ...form, email: e.target.value })}
+        />
+        <Button
+          className="h-14 rounded-xl text-lg"
+          type="button"
+          variant="outline"
+        >
+          중복확인
+        </Button>
+      </div>
+      <Input
+        placeholder="Full name"
+        className="h-14 rounded-xl text-lg"
+        type="text"
+        value={form.username}
+        onChange={(e) => setForm({ ...form, username: e.target.value })}
+      />
+      <Input
+        placeholder="Password"
+        className="h-14 rounded-xl text-lg"
+        type="password"
+        value={form.password}
+        onChange={handlePassword}
+      />
+      {form.pwError && <p style={{ color: "#BD0101" }}>{form.pwError}</p>}
+      <Input
+        placeholder="Check Password"
+        className="h-14 rounded-xl text-lg"
+        type="password"
+        value={form.chkPassword}
+        onChange={handlePasswordCheck}
+      />
+      {form.cpwError && <p style={{ color: "#BD0101" }}>{form.cpwError}</p>}
+      <div className="flex">
+        <Input
+          placeholder="Nickname"
+          className="h-14 rounded-xl text-lg mr-2"
           type="text"
-          value={form.username}
-          onChange={(e) => setForm({ ...form, username: e.target.value })}
+          value={form.nickname}
+          onChange={(e) => setForm({ ...form, nickname: e.target.value })}
         />
+        <Button
+          className="h-14 rounded-xl text-lg"
+          type="button"
+          variant="outline"
+        >
+          중복확인
+        </Button>
       </div>
-      <div className="divR">
-        <span className="textR">비밀번호</span>
-        <input
-          className="inputR"
-          type="password"
-          value={form.password}
-          onChange={handlePassword}
-        />
-        {form.pwError && <p style={{ color: "#BD0101" }}>{form.pwError}</p>}
-      </div>
-      <div className="divR">
-        <span className="textR">비밀번호 확인</span>
-        <input
-          className="inputR"
-          type="password"
-          value={form.chkPassword}
-          onChange={handlePasswordCheck}
-        />
-        {form.cpwError && <p style={{ color: "#BD0101" }}>{form.cpwError}</p>}
-      </div>
-      <div className="divR">
-        <span className="textR">닉네임</span>
-        <div className="chk">
-          <input
-            className="inputRS"
-            type="text"
-            value={form.nickname}
-            onChange={(e) => setForm({ ...form, nickname: e.target.value })}
-          />
-          <button className="chkbtn" type="button">
-            중복확인
-          </button>
-        </div>
-      </div>
-      <button className="signupBtn" type="submit">
-        I'M 시작하기
-      </button>
+      <Button className="h-14 rounded-xl font-bold text-2xl" type="submit">
+        Sign up
+      </Button>
     </form>
   );
 }
