@@ -1,16 +1,13 @@
 .header {
     display: flex;
-    flex-direction: column;
     height: 20vh;
-    justify-content: start;
+    justify-content: center;
     align-items: center;
-    z-index: 100;
-    /* border: 1px solid red; */
-  
+    z-index: 100;  
   }
   
   .headerTitle {
-      align-content: flex-start;
+      /* align-content: flex-start; */
       padding-top: 40px;
       font-weight: 800;
       font-size: 64px;
