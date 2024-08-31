@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./Login.css";
+
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 function Login() {
   const navigate = useNavigate();
@@ -47,28 +49,33 @@ function Login() {
   };
 
   return (
-    <form className="main" onSubmit={handleSubmit}>
-      <div className="id">
-        <span className="email">이메일</span>
-        <input
-          className="inEmail"
-          type="text"
-          value={form.email}
-          onChange={(e) => setForm({ ...form, email: e.target.value })}
-        />
+    <form
+      className="flex flex-col w-4/5 space-y-6 ml-14"
+      onSubmit={handleSubmit}
+    >
+      <div className="flex flex-col items-center space-y-3 mb-28">
+        <h2 className="text-4xl font-bold mt-6">Welcome Back!</h2>
+        <p className="text-base text-muted-foreground mb-28">
+          Sign in your account
+        </p>
       </div>
-      <div className="password">
-        <span className="pw">비밀번호</span>
-        <input
-          className="inPw"
-          type="password"
-          value={form.password}
-          onChange={(e) => setForm({ ...form, password: e.target.value })}
-        />
-      </div>
-      <button className="signupBtn" type="submit">
-        로그인
-      </button>
+      <Input
+        placeholder="Email"
+        className="h-14 rounded-xl text-lg"
+        type="email"
+        value={form.email}
+        onChange={(e) => setForm({ ...form, email: e.target.value })}
+      />
+      <Input
+        placeholder="Password"
+        className="h-14 rounded-xl text-lg"
+        type="password"
+        value={form.password}
+        onChange={(e) => setForm({ ...form, password: e.target.value })}
+      />
+      <Button className="h-14 rounded-xl font-bold text-2xl" type="submit">
+        Sign in
+      </Button>
     </form>
   );
 }

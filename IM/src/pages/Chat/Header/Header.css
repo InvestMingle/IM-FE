@@ -1,0 +1,19 @@
+.chatHeaderContainer{
+    font-size: 30px;
+    display: flex ;
+    flex-direction:row;
+    align-items: center;
+    padding: 10px 0;
+    border: 2px solid #4DB88C;
+    border-radius: 4px;
+}
+.channelTitle{
+
+    padding-left: 10px;
+}
+
+.goBack {
+    display: inline;
+    padding-top: 5px;
+    padding-left: 3px;
+}

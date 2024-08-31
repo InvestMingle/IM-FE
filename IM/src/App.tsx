@@ -7,16 +7,15 @@ import CandlestickChart from './CandlestickChart';
 
 
 function App() {
-    return (
-        <>
-            <Layout>
 
-                <Header />
-                <RouterProvider router={router} />
-                <CandlestickChart />
-            </Layout>
-        </>
-    );
+  return (
+    <>
+      <Layout>
+        <Header />
+        <RouterProvider router={router} />
+      </Layout>
+    </>
+  );
 }
 
 export default App;
