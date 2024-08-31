@@ -1,58 +1,54 @@
+// Chart.tsx
 import React, { useState } from 'react';
-import './Chart.css'; // Import the CSS file for styling
-
+import ChartComponent from './ChartComponent.tsx'; // Import the ChartComponent
+import JsonComponent from "./JsonComponent.tsx";
 const Chart: React.FC = () => {
-    // State to manage modal visibility
-    const [isModalOpen, setIsModalOpen] = useState(false);
-
-    // State to manage expand/collapse of content
     const [isExpanded, setIsExpanded] = useState(false);
 
-    // Function to open modal
-    const openModal = () => setIsModalOpen(true);
-
-    // Function to close modal
-    const closeModal = () => setIsModalOpen(false);
-
-    // Function to toggle content expand/collapse
-    const toggleExpand = () => setIsExpanded(!isExpanded);
+    const toggleNotice = () => {
+        setIsExpanded(!isExpanded);
+    };
 
     return (
-        <div>
-            {/* Button to trigger modal */}
-            <button onClick={openModal}>Open Modal</button>
-
-            {/* Modal Component */}
-            {isModalOpen && (
-                <div className="modal-background" onClick={closeModal}>
-                    <div className="modal-container" onClick={(e) => e.stopPropagation()}>
-                        <button className="close-button" onClick={closeModal}>
-                            &times;
-                        </button>
-
-                        {/* Modal Title - always visible */}
-                        <div className="modal-title">
-                            <h2>Announcement Title</h2>
-                        </div>
-
-                        {/* Expandable Content */}
-                        <div className={`modal-content ${isExpanded ? 'expanded' : 'collapsed'}`}>
-                            {isExpanded && (
-                                <p>
-                                    This is additional content that is shown when the expand button is clicked. You can add more information here, such as detailed announcements or other content.
-                                </p>
-                            )}
-                        </div>
-
-                        {/* Expand/Collapse Button */}
-                        <button className="expand-button" onClick={toggleExpand}>
-                            {isExpanded ? 'Collapse' : 'Expand'}
-                        </button>
-                    </div>
+        <div style={styles.noticeContainer}>
+            <div style={styles.noticeHeader}>
+                <h2>Notice Title</h2>
+                <button onClick={toggleNotice}>
+                    {isExpanded ? 'Hide Details' : 'Show Details'}
+                </button>
+            </div>
+            {isExpanded && (
+                <div style={styles.noticeContent}>
+                    <p>
+                       주식차트
+                    </p>
+                    {/* Include the ChartComponent inside the notice content */}
+                    <JsonComponent />
+                    <ChartComponent />
                 </div>
             )}
         </div>
     );
+};
+
+const styles = {
+    noticeContainer: {
+        backgroundColor: '#f8f9fa',
+        padding: '10px',
+        marginBottom: '10px',
+        border: '1px solid #ddd',
+        borderRadius: '5px',
+    },
+    noticeHeader: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    },
+    noticeContent: {
+        marginTop: '10px',
+        maxHeight: '150px',
+        overflowY: 'auto', // Enable scrolling if content is too long
+    },
 };
 
 export default Chart;
