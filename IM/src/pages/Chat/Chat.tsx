@@ -3,10 +3,9 @@ import { ChangeEvent, useEffect, useRef, useState } from "react"
 import SockJS from "sockjs-client";
 import { MessageContent } from "./type";
 import Messages from "./Messages/Messages";
-import Input from "./Input/Input";
-import './Chat.css'
 import Header from "./Header/Header";
 import { getInfo } from "../../stores/getMyinfo";
+import InputBox from "./Input/Input";
 
 const Chat = () => {
 
@@ -89,13 +88,14 @@ const Chat = () => {
 
   return (
     <>
-      <div className="chat">
-        <Header />
-        <div className="chatContainer">
+      <div className="flex flex-col">
+        <Header channelName={channelName} />
+        <div className=" 
+        grow flex flex-col-reverse h-screen relative overflow-y-auto pb-8">
           <Messages messages={messages} user={nickname} />
         </div>    
-        <div className="inputContainer">
-          <Input sendMessage={handleSubmit} message={message} handleInput={handleInputValue}  />
+        <div className="sticky bottom-0 p-2 shadow-inner">
+          <InputBox sendMessage={handleSubmit} message={message} handleInput={handleInputValue}  />
         </div>
       </div>
     </>

@@ -2,6 +2,7 @@ import "./Message.css";
 import { MessageProps } from "../type";
 import { FaRobot } from "react-icons/fa6";
 import {IoMdPerson} from "react-icons/io";
+import { cn } from "@/lib/utils";
 
 const Message = ({ message, user }: MessageProps) => {
 
@@ -19,18 +20,20 @@ const Message = ({ message, user }: MessageProps) => {
   return (
     <>
       <div className={current_user}>
+        <div className="flex pb-1">
         {(current_user == 'others')
         ?
-        <span><IoMdPerson/></span>
+        <span className="text-xl"><IoMdPerson/></span>
         :
         (current_user == 'IMBOT')
         ?
-        <span><FaRobot/></span>
+        <span className="userPic"><FaRobot/></span>
         :
         null
         }
-        <span className="profile">{sender}</span>
-        <div className="textbox">{data}</div>
+        <span className="flex ml-2 profile">{sender}</span>
+        </div>
+        <div className={cn('flex h-fit w-fit max-w-56 rounded-md border border-input bg-background px-3 py-2 mb-5 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2')}>{data}</div>
       </div>
     </>
   );
