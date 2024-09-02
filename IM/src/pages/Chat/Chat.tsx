@@ -6,6 +6,7 @@ import Messages from "./Messages/Messages";
 import Input from "./Input/Input";
 import './Chat.css'
 import Header from "./Header/Header";
+import Chart from "../Chart/Chart"
 
 const Chat = () => {
 
@@ -73,6 +74,7 @@ const Chat = () => {
     <>
       <div className="chat">
         <Header />
+        <Chart />
         <div className="chatContainer">
           <Messages messages={messages} user={nickName} />
         </div>    
