@@ -1,16 +1,14 @@
-import { ReactNode } from "react";
 import "./Layout.css";
 import Header from "../components/common/Header/Header";
+import { Outlet } from "react-router-dom";
 
-interface LayoutProps {
-  children: ReactNode;
-}
-
-const Layout: React.FunctionComponent<LayoutProps> = ({ children }) => {
+const Layout = () => {
   return (
-    <div className="appContainer">
-      <div>{children}</div>
-    </div>
+    <>
+        <Header />
+        <Outlet />
+    </>
+
   );
 };
 

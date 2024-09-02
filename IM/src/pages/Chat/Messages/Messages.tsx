@@ -1,12 +1,11 @@
 import Message from './Message'
 import { MessageContent, MessagesProps } from '../type'
-import './Messages.css'
 
 const Messages= ({messages, user}:MessagesProps) => {
 
   return (
-    <div className='messagesWrapper'>
-      <div className='messageContainer'>
+    <div className='grow flex flex-col-reverse overflow-y-auto mb-12 pb-2 box-border'>
+      <div className='flex flex-col p-2'>
           {messages.map((message : MessageContent, i:any) => (
               <div key={i}>
                   <Message message={message} user={user} />

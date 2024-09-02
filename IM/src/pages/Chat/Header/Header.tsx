@@ -1,12 +1,15 @@
 import { Link } from 'react-router-dom';
-import './Header.css'
 import { FaAngleLeft } from "react-icons/fa6";
 
-const Header = () => {
+interface chatHeaderProps {
+  channelName : string;
+}
+
+const Header = ({channelName} : chatHeaderProps) => {
   return (
-    <div className="chatHeaderContainer">
-        <Link to='/home' className='goBack'><FaAngleLeft /></Link>
-        <div className='channelTitle'>삼성전자 주식방</div>
+    <div className="text-xl flex flex-row items-start py-2 ">
+        <Link to='/home' className='inline pt-1 pl-1'><FaAngleLeft /></Link>
+        <div className='pl-2'>{channelName} 주식방</div>
     </div>
   )
 }

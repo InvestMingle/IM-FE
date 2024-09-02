@@ -3,14 +3,31 @@ import { ChangeEvent, useEffect, useRef, useState } from "react"
 import SockJS from "sockjs-client";
 import { MessageContent } from "./type";
 import Messages from "./Messages/Messages";
-import Input from "./Input/Input";
-import './Chat.css'
 import Header from "./Header/Header";
+import { getInfo } from "../../stores/getMyinfo";
+import InputBox from "./Input/Input";
 
 const Chat = () => {
 
   const channelName = "samsung"
-  const nickName = 'me';
+  const [nickname,setNickname] = useState("");
+
+  useEffect(()=>{
+    const fetchData = async () => {
+      try {
+        const result = await getInfo;
+        console.log("result", result);
+        setNickname(result.nickname);
+      } catch (error) {
+        console.error("Error fetching info:", error);
+      }
+    };
+  
+    fetchData();     
+  },[])
+
+
+  console.log(nickname)
 
   const [message, setMessage] = useState<string>("");
   const [messages, setMessages] = useState<MessageContent[]>([
@@ -29,7 +46,7 @@ const Chat = () => {
       console.log('Message sent: ', message);
       client.current?.send('/pub/chat',{},
         JSON.stringify({
-          sender: nickName,
+          sender: nickname,
           channelId : channelName,
           type : "TALK",
           data : message
@@ -71,13 +88,14 @@ const Chat = () => {
 
   return (
     <>
-      <div className="chat">
-        <Header />
-        <div className="chatContainer">
-          <Messages messages={messages} user={nickName} />
+      <div className="flex flex-col">
+        <Header channelName={channelName} />
+        <div className=" 
+        grow flex flex-col-reverse h-screen relative overflow-y-auto pb-8">
+          <Messages messages={messages} user={nickname} />
         </div>    
-        <div className="inputContainer">
-          <Input sendMessage={handleSubmit} message={message} handleInput={handleInputValue}  />
+        <div className="sticky bottom-0 p-2 shadow-inner">
+          <InputBox sendMessage={handleSubmit} message={message} handleInput={handleInputValue}  />
         </div>
       </div>
     </>
