@@ -17,7 +17,9 @@ const JsonComponent: React.FC = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('https://static.infragistics.com/xplatform/data/stocks/stockMicrosoft.json');
+                // const response = await fetch('https://static.infragistics.com/xplatform/data/stocks/stockMicrosoft.json');
+                const response = await fetch('/stock_data.json1');
+
                 const jsonData: PriceData[] = await response.json();
                 console.log('Fetched JSON Data:', jsonData);
 
