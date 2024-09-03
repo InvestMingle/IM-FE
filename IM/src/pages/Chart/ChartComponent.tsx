@@ -15,7 +15,6 @@ const ChartComponent: React.FC = () => {
             const response = await fetch(
                 `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=MSFT&interval=5min&apikey=`
                 // `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=005930.KS&apikey=`
-
         );
 
             const jsonData = await response.json();
