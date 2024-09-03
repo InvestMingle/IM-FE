@@ -4,8 +4,10 @@ import SockJS from "sockjs-client";
 import { MessageContent } from "./type";
 import Messages from "./Messages/Messages";
 import Header from "./Header/Header";
+import Chart from "../Chart/Chart"
 import { getInfo } from "../../stores/getMyinfo";
 import InputBox from "./Input/Input";
+
 
 const Chat = () => {
 
@@ -88,11 +90,13 @@ const Chat = () => {
 
   return (
     <>
+        <Chart />
       <div className="flex flex-col">
         <Header channelName={channelName} />
         <div className=" 
         grow flex flex-col-reverse h-screen relative overflow-y-auto pb-8">
           <Messages messages={messages} user={nickname} />
+
         </div>    
         <div className="sticky bottom-0 p-2 shadow-inner">
           <InputBox sendMessage={handleSubmit} message={message} handleInput={handleInputValue}  />
