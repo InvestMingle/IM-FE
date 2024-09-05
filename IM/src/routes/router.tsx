@@ -6,6 +6,9 @@ import Home from "../pages/Home/Home";
 import ErrorPage from "../components/common/ErrorPage/ErrorPage";
 import Chat from "../pages/Chat/Chat";
 import Layout from "./Layout";
+import AuthRoute from "./AuthRoute";
+
+const auth = true;
 
 export const router = createBrowserRouter([
   {
@@ -31,8 +34,8 @@ export const router = createBrowserRouter([
     ]
   },
   {
-    path: "/chat",
-    element: <Chat />,
+    path: "/chat/:chatId",
+    element: <AuthRoute auth={auth} component={<Chat />}/>,
     errorElement: <ErrorPage />
   }
 ]);

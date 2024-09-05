@@ -14,7 +14,7 @@ const InputBox = ({ sendMessage, message, handleInput } : ChatInputProps) => {
   return(
       <form className="flex justify-center p-1">
         <a href="" className='text-4xl p-1 mr-2'><AiTwotoneFileAdd/></a>
-        <div className="flex w-full max-w-sm items-center space-x-2 ">
+        <div className="flex w-full items-center space-x-2 ">
           <Input
             type="text"
             placeholder="Write a Message"
