@@ -7,11 +7,12 @@ import Header from "./Header/Header";
 import Chart from "../Chart/Chart"
 import { getInfo } from "../../stores/getMyinfo";
 import InputBox from "./Input/Input";
+import { useParams } from "react-router-dom";
 
 
 const Chat = () => {
 
-  const channelName = "samsung"
+  const channelName = useParams().chatId || "unknown"
   const [nickname,setNickname] = useState("");
 
   useEffect(()=>{
