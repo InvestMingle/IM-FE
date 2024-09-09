@@ -1,6 +1,12 @@
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 
+interface User {
+  email: string;
+  username: string;
+  nickname: string;
+}
+
 const api = "https://stock.bulbtalk.com";
 const user = "/user/";
 const token = "/auth/token/";
@@ -19,17 +25,27 @@ export const checkEmail = async (form: any, setForm: any) => {
   }
 
   try {
-    // 이메일 확인을 위한 임시 요청
-    const response = await axios.post(api + user, {
-      email: form.email,
-      username: "tempUser",
-      nickname: tempNick,
-      password: "tempPass",
+    // 이메일 중복 확인
+    const response = await axios.get(api + user, {
+      params: {
+        email: form.email,
+        username: "tempUser",
+        nickname: tempNick,
+      },
     });
-    setForm({ ...form, alertMsg: "사용 가능한 이메일입니다." });
+    console.log(response);
+
+    const isEmailTaken = response.data.results.some(
+      (user: User) => user.email === form.email
+    );
+
+    if (isEmailTaken) {
+      setForm({ ...form, alertMsg: "중복된 이메일입니다." });
+    } else {
+      setForm({ ...form, alertMsg: "사용 가능한 이메일입니다." });
+    }
   } catch (error) {
     console.error(error);
-    setForm({ ...form, alertMsg: "중복된 이메일입니다." });
   }
 };
 
@@ -42,16 +58,27 @@ export const checkNickname = async (form: any, setForm: any) => {
   }
 
   try {
-    // 닉네임 확인을 위한 임시 요청
-    const response = await axios.post(api + user, {
-      email: tempMail,
-      username: "tempUser",
-      nickname: form.nickname,
-      password: "tempPass",
+    // 닉네임 중복 확인
+    const response = await axios.get(api + user, {
+      params: {
+        email: tempMail,
+        username: "tempUser",
+        nickname: form.nickname,
+      },
     });
-    setForm({ ...form, alertMsg: "사용 가능한 닉네임입니다." });
+    console.log(response);
+
+    const isNicknameTaken = response.data.results.some(
+      (user: User) => user.nickname === form.nickname
+    );
+
+    if (isNicknameTaken) {
+      setForm({ ...form, alertMsg: "중복된 닉네임입니다." });
+    } else {
+      setForm({ ...form, alertMsg: "사용 가능한 닉네임입니다." });
+    }
   } catch (error) {
-    setForm({ ...form, alertMsg: "중복된 닉네임입니다." });
+    console.error(error);
   }
 };
 
