@@ -1,13 +1,23 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+
+import { checkEmail, checkNickname, handleSubmit } from "./services/register";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
 function Register() {
   const navigate = useNavigate();
-  const api = "https://stock.bulbtalk.com";
 
   const [form, setForm] = useState({
     email: "",
@@ -17,45 +27,9 @@ function Register() {
     nickname: "",
     pwError: "",
     cpwError: "",
+    alertMsg: "",
+    alertType: "",
   });
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const user = "/user/";
-    const token = "/auth/token/";
-
-    try {
-      // 1. 회원가입 요청 보내기
-      const response = await axios.post(api + user, {
-        email: form.email,
-        username: form.username,
-        nickname: form.nickname,
-        password: form.password,
-      });
-
-      if (response.status === 201) {
-        // 2. 회원가입 성공 시 토큰 발급 요청
-        const tokenResponse = await axios.post(api + token, {
-          email: form.email,
-          password: form.password,
-        });
-
-        if (tokenResponse.status === 200) {
-          // 3. 토큰 저장
-          localStorage.setItem("accessToken", tokenResponse.data.access);
-          localStorage.setItem("refreshToken", tokenResponse.data.refresh);
-
-          console.log("회원가입 성공:", response.data);
-
-          // 4. 홈화면 이동
-          navigate("/home");
-        }
-      }
-    } catch (error) {
-      console.error("회원가입 오류:", error);
-      alert("회원가입 중 문제가 발생했습니다. 다시 시도해 주세요.");
-    }
-  };
 
   // 비밀번호 조건 확인
   const handlePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -83,7 +57,7 @@ function Register() {
   return (
     <form
       className="flex flex-col w-4/5 space-y-6 ml-14"
-      onSubmit={handleSubmit}
+      onSubmit={(e) => handleSubmit(e, form, setForm, navigate)}
     >
       <div className="flex flex-col items-center space-y-3 mb-20">
         <h2 className="text-4xl font-bold mt-6">Join I'M</h2>
@@ -99,14 +73,45 @@ function Register() {
           value={form.email}
           onChange={(e) => setForm({ ...form, email: e.target.value })}
         />
-        <Button
-          className="h-14 rounded-xl text-lg"
-          type="button"
-          variant="outline"
-        >
-          중복확인
-        </Button>
+
+        <AlertDialog>
+          <AlertDialogTrigger asChild>
+            <Button
+              className="h-14 rounded-xl text-lg"
+              type="button"
+              variant="outline"
+              onClick={() => checkEmail(form, setForm)}
+            >
+              중복확인
+            </Button>
+          </AlertDialogTrigger>
+          {(form.alertMsg === "이메일을 입력해주세요." ||
+            form.alertMsg === "잘못된 입력값입니다." ||
+            form.alertMsg === "중복된 이메일입니다.") && (
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>{form.alertMsg}</AlertDialogTitle>
+                <AlertDialogDescription>Warning🚨</AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogAction>확인</AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          )}
+          {form.alertMsg === "사용 가능한 이메일입니다." && (
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>{form.alertMsg}</AlertDialogTitle>
+                <AlertDialogDescription>Success🎉</AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogAction>확인</AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          )}
+        </AlertDialog>
       </div>
+
       <Input
         placeholder="Full name"
         className="h-14 rounded-xl text-lg"
@@ -138,17 +143,63 @@ function Register() {
           value={form.nickname}
           onChange={(e) => setForm({ ...form, nickname: e.target.value })}
         />
-        <Button
-          className="h-14 rounded-xl text-lg"
-          type="button"
-          variant="outline"
-        >
-          중복확인
-        </Button>
+        <AlertDialog>
+          <AlertDialogTrigger asChild>
+            <Button
+              className="h-14 rounded-xl text-lg"
+              type="button"
+              variant="outline"
+              onClick={() => checkNickname(form, setForm)}
+            >
+              중복확인
+            </Button>
+          </AlertDialogTrigger>
+          {(form.alertMsg === "닉네임을 입력해주세요." ||
+            form.alertMsg === "중복된 닉네임입니다.") && (
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>{form.alertMsg}</AlertDialogTitle>
+                <AlertDialogDescription>Warning🚨</AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogAction>확인</AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          )}
+          {form.alertMsg === "사용 가능한 닉네임입니다." && (
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>{form.alertMsg}</AlertDialogTitle>
+                <AlertDialogDescription>Success🎉</AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogAction>확인</AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          )}
+        </AlertDialog>
       </div>
-      <Button className="h-14 rounded-xl font-bold text-2xl" type="submit">
-        Sign up
-      </Button>
+
+      <AlertDialog>
+        <AlertDialogTrigger asChild>
+          <Button className="h-14 rounded-xl font-bold text-2xl" type="submit">
+            Sign up
+          </Button>
+        </AlertDialogTrigger>
+        {form.alertMsg === "회원가입 중 문제가 발생했습니다." && (
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>{form.alertMsg}</AlertDialogTitle>
+              <AlertDialogDescription>
+                다시 시도해주세요.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogAction>확인</AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        )}
+      </AlertDialog>
     </form>
   );
 }
