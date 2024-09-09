@@ -2,12 +2,17 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+import useAuthStore from "./store";
+import { useBackNavigate } from "./useBack";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 function Login() {
   const navigate = useNavigate();
   const api = "https://stock.bulbtalk.com";
+
+  useBackNavigate();
 
   const [form, setForm] = useState({
     email: "",
@@ -37,7 +42,7 @@ function Login() {
         localStorage.setItem("accessToken", response.data.access);
         localStorage.setItem("refreshToken", response.data.refresh);
 
-        console.log("로그인 성공:", response.data);
+        useAuthStore.getState().login();
 
         // 4. 홈화면 이동
         navigate("/home");
