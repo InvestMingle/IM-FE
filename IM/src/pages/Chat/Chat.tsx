@@ -85,7 +85,7 @@ const Chat = () => {
 
   return (
     <>
-        <Chart />
+        <Chart stockSymbol={channelName} />
       <div className="flex flex-col">
         <Header channelName={channelName} />
         <div className=" 

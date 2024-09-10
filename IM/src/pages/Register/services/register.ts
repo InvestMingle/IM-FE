@@ -112,7 +112,7 @@ export const handleSubmit = async (
         localStorage.setItem("refreshToken", tokenResponse.data.refresh);
 
         // 4. 홈화면 이동
-        navigate("/home");
+        navigate("/login");
       }
     }
   } catch (error) {

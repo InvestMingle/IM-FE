@@ -1,32 +1,44 @@
-// Chart.tsx
 import React, { useState } from 'react';
-import ChartComponent from './ChartComponent.tsx'; // Import the ChartComponent
-import JsonComponent from "./JsonComponent.tsx";
+import DailyStockChart from "@/pages/Chart/DailyStockChart";
+import axios from 'axios';
+
 const Chart: React.FC = () => {
     const [isExpanded, setIsExpanded] = useState(false);
+    const [tokenStatus, setTokenStatus] = useState<string>('');  // For showing the status of token generation
 
+    // Toggle chart visibility
     const toggleNotice = () => {
         setIsExpanded(!isExpanded);
+    };
+
+    // Token generation function
+    const generateToken = async () => {
+        try {
+            setTokenStatus('Generating token...');
+            const response = await axios.post('http://localhost:5000/api/access-token');  // Generate the token
+            setTokenStatus('Token successfully generated!');  // Show success message
+            console.log('New Token:', response.data.accessToken);  // Log the new token (optional)
+        } catch (error) {
+            console.error('Error generating token:', error);
+            setTokenStatus('Failed to generate token.');
+        }
     };
 
     return (
         <div style={styles.noticeContainer}>
             <div style={styles.noticeHeader}>
-                <h2>Notice Title</h2>
+                <h2>주식차트</h2>
+                <button onClick={generateToken} style={styles.tokenButton}>토큰 발행</button>
                 <button onClick={toggleNotice}>
-                    {isExpanded ? 'Hide Details' : 'Show Details'}
+                    {isExpanded ? '차트닫기' : '차트보기'}
                 </button>
             </div>
             {isExpanded && (
                 <div style={styles.noticeContent}>
-                    <p>
-                       주식차트
-                    </p>
-                    {/* Include the ChartComponent inside the notice content */}
-                    <JsonComponent />
-                    <ChartComponent />
+                    <DailyStockChart />
                 </div>
             )}
+            {tokenStatus && <p>{tokenStatus}</p>}  {/* Display token generation status */}
         </div>
     );
 };
@@ -49,6 +61,15 @@ const styles = {
         maxHeight: '150px',
         overflowY: 'auto', // Enable scrolling if content is too long
     },
+    tokenButton: {
+        marginLeft: '10px',
+        padding: '5px 10px',
+        backgroundColor: '#4CAF50',
+        color: 'white',
+        border: 'none',
+        borderRadius: '3px',
+        cursor: 'pointer',
+    }
 };
 
 export default Chart;
