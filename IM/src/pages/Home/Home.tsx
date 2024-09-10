@@ -15,7 +15,7 @@ function Home() {
           variant="ghost"
         >
           <div className="flex items-center justify-center w-16 h-16">
-            <img className="w-14" src="image/hd-logo.png" alt={item.name} />
+            <img className="w-fit h-fit p-3" src={item.img} alt={item.name} />
           </div>
           <div className="grid justify-items-start ml-4">
             <span className="font-bold text-xl">{item.name}</span>
