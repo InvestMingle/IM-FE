@@ -62,7 +62,7 @@ const Chat = () => {
   const client = useRef<CompatClient | null>(null);
 
   const connectHandler = () => {
-    const socket = new SockJS(`http://localhost:8080/chat`);
+    const socket = new SockJS(`http://35.216.23.46:8080/ws`);
 
     client.current = Stomp.over(()=>socket);
     client.current.connect(
