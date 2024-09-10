@@ -8,7 +8,6 @@ import Chat from "../pages/Chat/Chat";
 import Layout from "./Layout";
 import AuthRoute from "./AuthRoute";
 
-const auth = true;
 
 export const router = createBrowserRouter([
   {
@@ -35,7 +34,7 @@ export const router = createBrowserRouter([
   },
   {
     path: "/chat/:chatId",
-    element: <AuthRoute auth={auth} component={<Chat />}/>,
+    element: <AuthRoute component={<Chat />}/>,
     errorElement: <ErrorPage />
   }
 ]);

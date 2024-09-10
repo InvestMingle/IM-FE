@@ -1,19 +1,24 @@
-import React from 'react'
+import useAuthStore from '@/pages/Login/store';
+import React, { useEffect } from 'react'
 import { Navigate } from 'react-router-dom'
 
 
 interface AuthRouteProps {
-  auth : boolean,
   component : React.ReactNode
 }
 
-const AuthRoute = ({auth, component} : AuthRouteProps) => {
+const AuthRoute = ({component} : AuthRouteProps) => {
 
-  if (!auth) {
-    alert('로그인이 필요합니다');
-  }
+  const {isLoggedIn} = useAuthStore();
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      alert('로그인이 필요합니다');
+    }
+  }, []); 
+
   return (
-    auth ? component : <Navigate to={'/login'}/>
+    isLoggedIn ? component : <Navigate to={'/login'}/>
   )
 }
 
