@@ -15,11 +15,11 @@ const Chat = () => {
   const channelName = useParams().chatId || "unknown"
   const [nickname,setNickname] = useState("");
 
+
   useEffect(()=>{
     const fetchData = async () => {
       try {
         const result = await getInfo;
-        console.log("result", result);
         setNickname(result.nickname);
       } catch (error) {
         console.error("Error fetching info:", error);
@@ -29,14 +29,8 @@ const Chat = () => {
     fetchData();     
   },[])
 
-
-  console.log(nickname)
-
   const [message, setMessage] = useState<string>("");
-  const [messages, setMessages] = useState<MessageContent[]>([
-    {sender:'user1', data: "hello", channelId: channelName, type:"TALK"},
-    {sender:'IMBOT', data:'오늘의 삼성전자 주가는.....', channelId:channelName, type:"TALK"}
-  ]);
+  const [messages, setMessages] = useState<MessageContent[]>([]);
 
 
   const handleInputValue = (event: ChangeEvent<HTMLInputElement>) => {
